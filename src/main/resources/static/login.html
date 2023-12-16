@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>WMSBio</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <base href="/"/>
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
+    </head>
+    <body style="
+        background-color: rgb(28 28 28);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+         -khtml-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+    ">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+        </svg>
+
+        <div class="p-5 my-5 m-auto border" style="width: 500px; background-color: white;">
+            <div class="d-flex">
+                <img src="https://media.licdn.com/dms/image/D5635AQEbav24Cp3Hcg/profile-framedphoto-shrink_200_200/0/1666797923621?e=1699801200&amp;v=beta&amp;t=KO6IK-7iZqWjDeZW5BrYOUKvqDM4M0_nK3UMlZUQPFE" alt="John Doe" class="me-3 rounded-circle" style="width: 100px; height: 100px;">
+                <div>
+                    <h5 class="fw-bold">WMSBio
+                    </h5>
+                    <p>Welcome to my portfolio website! The following page uses Spring Security to allow for Form or OAuth2 login. For a deeper look inside, check out the video below!</p>
+                </div>
+            </div>
+
+            <div class="mb-5 ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+
+            <div class="alert alert-danger d-flex align-items-center visually-hidden" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div class="message"></div>
+            </div>
+
+            <div class="alert alert-success d-flex align-items-center visually-hidden" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div class="message"></div>
+            </div>
+
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-form-login-tab" data-bs-toggle="pill" data-bs-target="#pills-form-login" type="button" role="tab" aria-controls="pills-form-login" aria-selected="true">Form Login</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-oauth2-login-tab" data-bs-toggle="pill" data-bs-target="#pills-oauth2-login" type="button" role="tab" aria-controls="pills-oauth2-login" aria-selected="false">OAuth2 Login</button>
+                </li>
+            </ul>
+            <div class="tab-content border p-3" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-form-login" role="tabpanel" aria-labelledby="pills-form-login">
+                    <form class="needs-validation" method="post" action="/login">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="username" name="username" placeholder="Enter email" aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <div id="validationEmailFeedback" class="invalid-feedback"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" aria-describedby="passwordHelp" required>
+                            <div id="passwordHelp" class="form-text">Your password must be 8-20 characters long, contain letters, numbers, and at least one special character.</div>
+                            <div id="validationPasswordFeedback" class="invalid-feedback"></div>
+                        </div>
+                        <div id="verifyPwd" class="mb-3 visually-hidden">
+                            <label for="verifyPassword" class="form-label">Verify Password</label>
+                            <input type="password" class="form-control" id="verifyPassword" name="verifyPassword" placeholder="Enter password" aria-describedby="verifyPasswordHelp">
+                            <div id="verifyPasswordHelp" class="form-text">Enter your password again for validation before moving forward.</div>
+                            <div id="validationVerifyPasswordFeedback" class="invalid-feedback"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                        <button id="register" type="button" class="btn btn-primary mb-3">Register</button><br>
+                        <button onclick="" type="button" class="d-block" style="background: none!important;border: none;padding: 0!important;font-family: arial, sans-serif;color: #069;text-decoration: underline;cursor: pointer;">Forgot Password</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="pills-oauth2-login" role="tabpanel" aria-labelledby="pills-oauth2-login">
+                    <div class="registrations"></div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            function pwdCheck(pwd) {
+                var error = "";
+
+                if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(pwd))) {
+                    error += "Password must contain one special character.<br>";
+                }
+                if (!(/\d/.test(pwd))) {
+                    error += "Password must contain one number.<br>";
+                }
+
+                if (!(/[a-zA-Z]/.test(pwd))) {
+                    error += "Password must contain one letter.<br>";
+                }
+
+                if (pwd.length < 8 || pwd.length > 20) {
+                    error += "Password must be 8-20 characters";
+                }
+
+                return error;
+            }
+
+            $("#register").click(function(event) {
+                var email = $('input[name=username]').val();
+                var pwd = $('input[name=password]').val();
+                var verifyPwd = $('input[name=verifyPassword]').val();
+                var error = pwdCheck(pwd);
+                var doPost = true;
+
+                if (error.length != 0) {
+                    $("#validationPasswordFeedback").html(error);
+                    $("#password").addClass("is-invalid");
+                    doPost = false;
+                }
+                else {
+                    $("#validationPasswordFeedback").html("");
+                    $("#password").removeClass("is-invalid");
+                }
+
+                if ($('#verifyPwd').hasClass('visually-hidden')) {
+                    $('#verifyPwd').removeClass('visually-hidden');
+                    doPost = false;
+                }
+
+                if (verifyPwd != pwd) {
+                    $("#validationVerifyPasswordFeedback").html("Both password fields must match.");
+                    $("#verifyPassword").addClass("is-invalid");
+                    doPost = false;
+                }
+                else {
+                    $("#validationVerifyPasswordFeedback").html("");
+                    $("#verifyPassword").removeClass("is-invalid");
+                }
+
+                if (!email.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                    $("#validationEmailFeedback").html("Invalid email address.");
+                    $("#username").addClass("is-invalid");
+                    doPost = false;
+                }
+                else {
+                    $("#validationEmailFeedback").html("");
+                    $("#username").removeClass("is-invalid");
+                }
+
+                if (!doPost) {
+                    return;
+                }
+
+                $.post("/register-user", {username: email, password: pwd}, function(data) {
+                    if (data) {
+                        if (data.includes("Success:")) {
+                            $(".message").html(data.replace("Success:", ""));
+                            $(".alert-success").removeClass("visually-hidden");
+                        }
+                        else {
+                            $(".message").html(data);
+                            $(".alert-danger").removeClass("visually-hidden");
+                        }
+                    }
+                });
+            });
+
+            $.get("/registrations", function(data) {
+                var innerHtml = "";
+                let i = 0;
+
+                while (i < data.registrations.length) {
+                    var name = "" + data.registrations[i];
+                    innerHtml += '<a role="button" class="d-block btn btn-dark m-1" href="/oauth2/authorization/' + name + '">' + name.charAt(0).toUpperCase() + name.substring(1) + '</a>';
+                    i++;
+                }
+
+                $(".registrations").html(innerHtml);
+            });
+
+            $.get("/info", {info: 'message', deleteAfterRetrieve: true}, function(data) {
+                if (data) {
+                    if (data.includes("Success:")) {
+                        $(".message").html(data.replace("Success:", ""));
+                        $(".alert-success").removeClass("visually-hidden");
+                    }
+                    else {
+                        $(".message").html(data);
+                        $(".alert-danger").removeClass("visually-hidden");
+                    }
+                }
+            });
+
+            $.get("/info", {info: 'validation-email-feedback', deleteAfterRetrieve: true}, function(data) {
+                if (data) {
+                    $("#validationEmailFeedback").html(data);
+                    $("#username").addClass("is-invalid");
+                }
+            });
+
+            $.get("/info", {info: 'validation-password-feedback', deleteAfterRetrieve: true}, function(data) {
+                if (data) {
+                    $("#validationPasswordFeedback").html(data);
+                    $("#password").addClass("is-invalid");
+                }
+            });
+        </script>
+    </body>
+</html>
